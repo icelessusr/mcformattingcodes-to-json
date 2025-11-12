@@ -7,8 +7,8 @@ A simple python program that converts [Minecraft Formatting Codes](https://minec
 ## Features
 
 - Color codes: `&1`, `&2`...
-- Hex color codes: `&#000000`, `&#000001`
-- Text formatting: `&l`, `&o`
+- Hex color codes: `&#000000`, `&#000001`...
+- Text formatting: `&l`, `&o`...
 - Auto reset (`&r`) when: `Never`, `Every time color is changed`, `Every line`, or `Every time color is changed and every line`
 - User preferences (in code)
 
