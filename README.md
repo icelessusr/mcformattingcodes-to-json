@@ -14,4 +14,14 @@ A simple python program that converts [Minecraft Formatting Codes](https://minec
 
 ### Start using
 
-Since it's built as a single-file, download the `mcformattingcodes-to-json.py` from source or a specific release and run it with `python3`.
+Since it's built as a single-file, download the `mcformattingcodes-to-json.py` from source or a specific release and run it with Python.
+
+#### CLI
+
+```bash
+python3 mcformattingcodes-to-json.py
+```
+
+#### GUI
+
+Just select Python to open the file `mcformattingcodes-to-json.py`.
