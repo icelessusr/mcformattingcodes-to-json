@@ -25,3 +25,11 @@ python3 mcformattingcodes-to-json.py
 #### GUI
 
 Just select Python to open the file `mcformattingcodes-to-json.py`.
+
+## Features
+
+- Color codes: `&1`, `&2`...
+- Hex color codes: `&#000000`, `&#000001`
+- Text formatting: `&l`, `&o`
+- Auto reset (`&r`) when: `Never`, `Every time color is changed`, `Every line`, or `Every time color is changed and every line`
+- User preferences (in code)
