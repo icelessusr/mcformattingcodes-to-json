@@ -4,6 +4,15 @@ A simple python program that converts [Minecraft Formatting Codes](https://minec
 
 ![Demo Image](/demo.png)
 
+## Features
+
+- Color codes: `&1`, `&2`...
+- Hex color codes: `&#000000`, `&#000001`
+- Text formatting: `&l`, `&o`
+- Auto reset (`&r`) when: `Never`, `Every time color is changed`, `Every line`, or `Every time color is changed and every line`
+- User preferences (in code)
+
+
 ## Setup
 
 ### Requirements
@@ -12,7 +21,7 @@ A simple python program that converts [Minecraft Formatting Codes](https://minec
 
 > **Note:** Modern python installations usually include `tkinter` so you don't have to install it separately.
 
-### Start using
+### Run
 
 Since it's built as a single-file, download the `mcformattingcodes-to-json.py` from source or a specific release and run it with Python.
 
@@ -25,11 +34,3 @@ python3 mcformattingcodes-to-json.py
 #### GUI
 
 Just select Python to open the file `mcformattingcodes-to-json.py`.
-
-## Features
-
-- Color codes: `&1`, `&2`...
-- Hex color codes: `&#000000`, `&#000001`
-- Text formatting: `&l`, `&o`
-- Auto reset (`&r`) when: `Never`, `Every time color is changed`, `Every line`, or `Every time color is changed and every line`
-- User preferences (in code)
