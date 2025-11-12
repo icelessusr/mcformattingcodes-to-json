@@ -1,4 +1,4 @@
-# mcformattingcodes-to-json
+# Minecraft Formatting Codes to Json
 
 A simple python program that converts [Minecraft Formatting Codes](https://minecraft.wiki/w/Formatting_codes) into [Minecraft JSON Text Components](https://minecraft.wiki/w/Text_component_format).
 
