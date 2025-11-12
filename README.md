@@ -10,4 +10,6 @@ A simple python program that converts [Minecraft Formatting Codes](https://minec
 
 > **Note:** Modern python installations usually include `tkinter` so you don't have to install it separately.
 
+### Start using
+
 Since it's built as a single-file, download the `mcformattingcodes-to-json.py` from source or a specific release and run it with `python3`.
