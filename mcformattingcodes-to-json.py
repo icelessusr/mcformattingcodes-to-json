@@ -66,56 +66,57 @@ def main():
         if autoReset_seleted.get() == "Every line" or autoReset_seleted.get() == "Every time color is changed and every line":
             config = overwriteDict(defaultConfig, preferConfig)
         
-        lineContents = []
-        if line == "":
-            lineContents = [{"text": ""}]
-        else:
-            notFirst = False
-            for part in line.split("&"):
-                if notFirst or line[0] == "&":
-                    notFirst = True
-                    print(part)
-                    if not part:
-                        continue
-                    
-                    if part.startswith("#"):
-                        config["color"] = part[0:7]
-                        part = part[7:]
-                    elif part[0] == "l":
-                        config["bold"] = True
-                        part = part[1:]
-                    elif part[0] == "o":
-                        config["italic"] = True
-                        part = part[1:]
-                    elif part[0] == "n":
-                        config["underlined"] = True
-                        part = part[1:]
-                    elif part[0] == "m":
-                        config["strikethrough"] = True
-                        part = part[1:]
-                    elif part[0] == "k":
-                        config["obfuscated"] = True
-                        part = part[1:]
-                    elif part[0] == "r":
-                        config = defaultConfig
-                        part = part[1:]
-                    elif part[0] in colorTable:
-                        if autoReset_seleted.get() == "Every time color is changed" or autoReset_seleted.get() == "Every time color is changed and every line":
-                            config = overwriteDict(defaultConfig, preferConfig)
-                        config["color"] = colorTable[part[0]]
-                        part = part[1:]
-                
-                if part:
-                    lineContents.append(configClean(overwriteDict(config, {"text": part})))
 
-                
-                
-        results.append(json.dumps(lineContents, ensure_ascii=False, separators=(',', ':')))
+        lineContents = []
+        tempText = ""
+        skip = 0
+        for index, part in enumerate(line):
+            if skip > 0:
+                skip -= 1
+                continue
+            if part == "&":
+                if tempText != "":
+                    lineContents.append(configClean(overwriteDict(config, {"text": tempText})))
+                tempText = ""
+                if line[index+1] == "#":
+                    if autoReset_seleted.get() == "Every time color is changed" or autoReset_seleted.get() == "Every time color is changed and every line":
+                        config = overwriteDict(defaultConfig, preferConfig)
+                    config["color"] = line[index+1:index+8]
+                    skip = 7
+                elif line[index+1] == "l":
+                    config["bold"] = True
+                    skip = 1
+                elif line[index+1] == "o":
+                    config["italic"] = True
+                    skip = 1
+                elif line[index+1] == "n":
+                    config["underlined"] = True
+                    skip = 1
+                elif line[index+1] == "m":
+                    config["strikethrough"] = True
+                    skip = 1
+                elif line[index+1] == "k":
+                    config["obfuscated"] = True
+                    skip = 1
+                elif line[index+1] == "r":
+                    config = defaultConfig
+                    skip = 1
+                elif line[index+1] in colorTable:
+                    if autoReset_seleted.get() == "Every time color is changed" or autoReset_seleted.get() == "Every time color is changed and every line":
+                        config = overwriteDict(defaultConfig, preferConfig)
+                    config["color"] = colorTable[line[index+1]]
+                    skip = 1
+            else:
+                tempText += part
+        
+        lineContents.append(configClean(overwriteDict(config, {"text": tempText})))
+                    
+        results.append(lineContents)
 
     root.clipboard_clear()
-    root.clipboard_append(f"[%s]" % (",".join(map(lambda x: f"'{x}'", results))))
+    root.clipboard_append(json.dumps(results, ensure_ascii=False))
     root.update()
-    print(f"[%s]" % (",".join(map(lambda x: f"'{x}'", results))))
+    print(json.dumps(results, indent=4, ensure_ascii=False))
     threading.Thread(target=copied).start()
 
 root = tk.Tk()
